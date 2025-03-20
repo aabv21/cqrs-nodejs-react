@@ -54,6 +54,22 @@ export default function PostDetail() {
     }
   };
 
+  const handleDeleteComment = async (commentId: string) => {
+    try {
+      await fetch(
+        `http://localhost:3000/api/posts/${id}/comments/${commentId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      toast.success("Comment deleted successfully");
+      fetchPost();
+    } catch (error) {
+      console.error("Failed to delete comment", error);
+      toast.error("Failed to delete comment");
+    }
+  };
+
   if (!post) return <div>Loading...</div>;
 
   return (
@@ -86,10 +102,21 @@ export default function PostDetail() {
             {post.comments.map((comment) => (
               <Card key={comment.id}>
                 <CardContent className="pt-4">
-                  <p>{comment.content}</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    By: {comment.email}
-                  </p>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <p>{comment.content}</p>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        By: {comment.email}
+                      </p>
+                    </div>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => handleDeleteComment(comment.id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}

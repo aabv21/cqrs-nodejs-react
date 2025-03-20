@@ -1,6 +1,7 @@
 // Event Types
 export enum EventType {
   POST_CREATED = "POST_CREATED",
+  POST_DELETED = "POST_DELETED",
   COMMENT_ADDED = "COMMENT_ADDED",
   COMMENT_DELETED = "COMMENT_DELETED",
 }
@@ -24,17 +25,40 @@ export interface AddCommentCommand {
   };
 }
 
+export interface DeletePostCommand {
+  type: "DELETE_POST";
+  payload: {
+    id: number;
+  };
+}
+
 export interface DeleteCommentCommand {
   type: "DELETE_COMMENT";
   payload: {
+    id: number;
     post_id: number;
-    comment_id: number;
+  };
+}
+
+export interface PostDeletedEvent {
+  type: "POST_DELETED";
+  payload: {
+    id: number;
+  };
+}
+
+export interface CommentDeletedEvent {
+  type: "COMMENT_DELETED";
+  payload: {
+    id: number;
+    post_id: number;
   };
 }
 
 export type Command =
   | CreatePostCommand
   | AddCommentCommand
+  | DeletePostCommand
   | DeleteCommentCommand;
 
 // Query Types

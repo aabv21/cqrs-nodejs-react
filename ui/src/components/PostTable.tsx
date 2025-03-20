@@ -39,6 +39,19 @@ export default function PostTable() {
     }
   };
 
+  const handleDelete = async (postId: number) => {
+    try {
+      await fetch(`http://localhost:3000/api/posts/${postId}`, {
+        method: "DELETE",
+      });
+      toast.success("Post deleted successfully");
+      fetchPosts();
+    } catch (error) {
+      console.error("Failed to delete post", error);
+      toast.error("Failed to delete post");
+    }
+  };
+
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center mb-6">
@@ -71,7 +84,12 @@ export default function PostTable() {
                 >
                   Details
                 </Button>
-                <Button variant="destructive">Delete</Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => handleDelete(post._id)}
+                >
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}
