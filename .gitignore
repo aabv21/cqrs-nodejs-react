@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+
+# API Gateway specific
+api-gateway/node_modules/
+api-gateway/dist/
+api-gateway/.env
+
+# UI specific
+ui/node_modules/
+ui/dist/
+ui/build/
+ui/.cache/
+ui/.env
+ui/.next/
+ui/coverage/
+
+# Commands specific
+commands/node_modules/
+commands/dist/
+commands/.env
+
+# Queries specific
+queries/node_modules/
+queries/dist/
+queries/.env
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/ 
